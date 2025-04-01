@@ -12,6 +12,9 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import ImageContainer from "@/components/login/ImageContainer";
+import Image from "next/image";
+import imd from "@/path/images/hos.jpg";
 
 const LoginPage = () => {
   const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,7 +27,7 @@ const LoginPage = () => {
     setIsPasswordShown((prev) => !prev);
   };
 
-  const Img = '@/path/image/hos.jpg'
+  const Img = "@/path/images/hos.jpg";
 
   return (
     <Box
@@ -49,13 +52,29 @@ const LoginPage = () => {
           alignItems: "center",
         }}
       >
-        <img src="Img" alt="Login Illustration" style={{ maxWidth: "100%" }} />
+        {/* <ImageContainer></ImageContainer> */}
+        <Image
+          src="/path/images/hos.jpg" // เส้นทางของภาพ (สามารถเป็น URL ได้เช่นกัน)
+          alt="My Image"
+          width={300} // กำหนดความกว้างของภาพ
+          height={300} // กำหนดความสูงของภาพ
+        ></Image>
+        {/* <Image
+          src="https://example.com/path/to/image.jpg"
+          alt="External Image"
+          width={500}
+          height={300}
+        /> */}
+        {/* <img src={Img} alt="Login Illustration" style={{ maxWidth: "100%" }} /> */}
       </Box>
       <Box
         sx={{
           flex: 1,
         }}
       >
+        <Typography variant="h5" sx={{ fontSize: "2rem", fontWeight: 500 }}>
+        เข้าสู่ระบบ
+      </Typography>
         <MTextField
           fullWidth
           label="ชื่อผู้ใช้งาน"
@@ -99,7 +118,7 @@ const LoginPage = () => {
           Log In
         </Button>
         <div className="flex justify-center items-center flex-wrap gap-2">
-          <Typography>New on our platform?</Typography>
+          {/* <Typography>New on our platform?</Typography> */}
           <Typography component={Link} href="/register" color="primary">
             Create an account
           </Typography>
@@ -110,7 +129,7 @@ const LoginPage = () => {
 };
 export default LoginPage;
 //     <div >
-        
+
 //       <MTextField
 //         fullWidth
 //         label="ชื่อผู้ใช้งาน"
