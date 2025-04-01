@@ -1,0 +1,45 @@
+import { useState, useEffect } from "react";
+
+function useOnlineStatus() {
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+
+  useEffect(() => {
+    const updateStatus = () => setIsOnline(navigator.onLine);
+
+    window.addEventListener("online", updateStatus);
+    window.addEventListener("offline", updateStatus);
+
+    return () => {
+      window.removeEventListener("online", updateStatus);
+      window.removeEventListener("offline", updateStatus);
+    };
+  }, []);
+
+  return isOnline;
+}
+
+export default useOnlineStatus;
+
+// ตรวจสอบสถานะการเชื่อมต่ออินเทอร์เน็ต
+
+// import { useState, useEffect } from "react";
+
+// function useOnlineStatus() {
+//   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+
+//   useEffect(() => {
+//     const updateStatus = () => setIsOnline(navigator.onLine);
+
+//     window.addEventListener("online", updateStatus);
+//     window.addEventListener("offline", updateStatus);
+
+//     return () => {
+//       window.removeEventListener("online", updateStatus);
+//       window.removeEventListener("offline", updateStatus);
+//     };
+//   }, []);
+
+//   return isOnline;
+// }
+
+// export default useOnlineStatus;

@@ -1,0 +1,48 @@
+/*######################### root #########################*/
+:root {
+  --color-primary: #00a94f;
+  --color-secondary: #18a94f;
+  --color-light: #ffffff;
+  --color-gray: #bcbcbc;
+  --color-dark: #666666;
+  --color-green2: #00ea6d;
+  --color-green3: #7dac92;
+  --bg-primary: #e5f6ed;
+  --bg-secondary: #f8f8fa;
+  --bg-green: #005a2a;
+  --color-border: #e6e6e6;
+  --margin-standard: 10px;
+  --transition: 0.3s ease-in-out;
+  --delay: 0.2s;
+  --g-dark: #333333;
+  --g-dark-2: #666;
+  --g-grey: #d7d7d7;
+  --g-green: #00a94f;
+  --g-red: #b91213;
+}
+
+body,
+html {
+  overflow: unset;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-dark);
+}
+
+
+.header {
+  display: block;
+  z-index: 1001 !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  box-shadow: none !important;
+  width: 100%;
+}
+body.panel-open{
+  pointer-events: none;
+  touch-action: none;
+  overflow: hidden;
+}
