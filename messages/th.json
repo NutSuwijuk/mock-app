@@ -2,5 +2,17 @@
     "HomePage": {
         "GetStartedByEditing": "เริ่มต้นโดยการแก้ไข",
         "SaveAndSeeYourChangesInstantly": "บันทึกและดูการเปลี่ยนแปลงของคุณได้ทันที"
+    },
+    "AuthPage":{
+        "Login": "เข้าสู่ระบบ",
+        "RememberMe": "จำฉันไว้",
+        "ForgotPassword": "ลืมรหัสผ่าน",
+        "Register": "สมัครสมาชิก",
+        "DoNotHaveAnAccount": "ไม่มีบัญชี",
+        "Username": "ชื่อผู้ใช้งาน",
+        "Password": "รหัสผ่าน",
+        "Email": "อีเมล",
+        "HaveAnAccount": "มีบัญชีอยู่แล้ว",
+        "ResetPassword": "รีเซ็ตรหัสผ่าน"
     }
 }

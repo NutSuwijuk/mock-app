@@ -2,5 +2,17 @@
     "HomePage": {
         "GetStartedByEditing": "Get started by editing",
         "SaveAndSeeYourChangesInstantly": "Save and see your changes instantly."
+    },
+    "AuthPage":{
+        "Login": "Login",
+        "RememberMe": "Remember me",
+        "ForgotPassword": "Forgot password",
+        "Register": "Register",
+        "DoNotHaveAnAccount": "Don't have an account",
+        "Username": "Username",
+        "Password": "Password",
+        "Email": "Email Address",
+        "HaveAnAccount": "Have an account",
+        "ResetPassword": "Reset Password"
     }
 }

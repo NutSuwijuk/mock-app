@@ -12,22 +12,52 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import ImageContainer from "@/components/login/ImageContainer";
 import Image from "next/image";
-import imd from "@/path/images/hos.jpg";
+// import imd from "@/path/images/hos.jpg";
+import { useRouter } from "next/navigation"; // Use next/navigation for client components
+import { useTranslations } from "next-intl";
+import LogoImage from "@/components/login/LogoImage";
+
+// Mock data for login credentials
+const mockUserData = {
+  email: "user@example.com",
+  password: "password123",
+};
 
 const LoginPage = () => {
+  const t = useTranslations("AuthPage");
+
+  const router = useRouter(); // Initialize useRouter
   const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
+
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const togglePasswordVisibility = () => {
     setIsPasswordShown((prev) => !prev);
   };
 
-  const Img = "@/path/images/hos.jpg";
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = () => {
+    if (username === mockUserData.email && password === mockUserData.password) {
+      console.log("Login successful");
+      router.push("/Test");
+    }
+  };
+
+  // เช็คว่าทั้งสองฟิลด์มีค่าหรือไม่
+  const isFormValid = username.trim() !== "" && password.trim() !== "";
 
   return (
     <Box
@@ -35,60 +65,62 @@ const LoginPage = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        gap: "2rem", // Add gap between columns
-        padding: "2rem",
+        gap: { xs: "1rem", md: "2rem" }, // ปรับ gap ตามขนาดหน้าจอ
+        padding: { xs: "1rem", md: "2rem" }, // ปรับ padding ตามขนาดหน้าจอ
         maxWidth: "800px",
+        width: { xs: "95%", md: "800px" }, // ปรับความกว้างตามขนาดหน้าจอ
         margin: "auto",
-        marginTop: "10vh",
+        marginTop: { xs: "5vh", md: "10vh" }, // ปรับ margin top ตามขนาดหน้าจอ
         border: "1px solid #eee",
         boxShadow: "0 2px 10px rgba(0, 0, 0, 0.08)",
+        flexDirection: { xs: "column", md: "row" }, // Stack vertically on mobile
       }}
     >
       <Box
         sx={{
-          flex: 1,
+          flex: { xs: "none", md: 1 },
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          width: { xs: "100%", md: "auto" },
         }}
       >
-        {/* <ImageContainer></ImageContainer> */}
-        <Image
-          src="/path/images/hos.jpg" // เส้นทางของภาพ (สามารถเป็น URL ได้เช่นกัน)
-          alt="My Image"
-          width={300} // กำหนดความกว้างของภาพ
-          height={300} // กำหนดความสูงของภาพ
-        ></Image>
-        {/* <Image
-          src="https://example.com/path/to/image.jpg"
-          alt="External Image"
-          width={500}
-          height={300}
-        /> */}
-        {/* <img src={Img} alt="Login Illustration" style={{ maxWidth: "100%" }} /> */}
+        <LogoImage></LogoImage>
       </Box>
       <Box
         sx={{
-          flex: 1,
+          flex: { xs: "none", md: 1 },
+          width: { xs: "100%", md: "auto" }, // ปรับความกว้างตามขนาดหน้าจอ
         }}
       >
-        <Typography variant="h5" sx={{ fontSize: "2rem", fontWeight: 500 }}>
-        เข้าสู่ระบบ
-      </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            fontSize: { xs: "1.5rem", md: "2rem" }, // ปรับขนาดตัวอักษรตามขนาดหน้าจอ
+            fontWeight: 500,
+            textAlign: { xs: "center", md: "left" }, // ปรับการจัดวางตัวอักษรตามขนาดหน้าจอ
+          }}
+        >
+          {t("Login")}
+        </Typography>
         <MTextField
           fullWidth
-          label="ชื่อผู้ใช้งาน"
+          label={t("Username")}
           margin="normal"
           variant="outlined"
           required
-        ></MTextField>
+          value={username}
+          onChange={handleUsernameChange}
+        />
         <MTextField
           fullWidth
-          label="รหัสผ่าน"
+          label={t("Password")}
           type={isPasswordShown ? "text" : "password"}
           margin="normal"
           variant="outlined"
           required
+          value={password}
+          onChange={handlePasswordChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -103,24 +135,33 @@ const LoginPage = () => {
             ),
           }}
         />
-        <div className="flex justify-between items-center gap-x-3 gap-y-1 flex-wrap">
-          <FormControlLabel control={<Checkbox />} label="Remember me" />
-          <Typography
-            className="text-end"
-            color="primary"
-            component={Link}
-            href="/forgot-password"
-          >
-            Forgot password?
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <FormControlLabel control={<Checkbox />} label={t("RememberMe")} />
+          <Typography color="primary" component={Link} href="/forgot-password" sx={{ lineHeight: 2.5 }}>
+            {t("ForgotPassword")}
           </Typography>
         </div>
-        <Button fullWidth variant="contained" type="submit">
-          Log In
+        <Button
+          fullWidth
+          variant="contained"
+          type="button"
+          onClick={handleLogin}
+          disabled={!isFormValid}
+          sx={{
+            mt: 2,
+            mb: { xs: 2, md: 3 }, // ปรับ margin bottom ตามขนาดหน้าจอ
+          }}
+        >
+          {t("Login")}
         </Button>
-        <div className="flex justify-center items-center flex-wrap gap-2">
-          {/* <Typography>New on our platform?</Typography> */}
-          <Typography component={Link} href="/register" color="primary">
-            Create an account
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+        <Typography sx={{ lineHeight: 2.5 }}>
+            {t("DoNotHaveAnAccount")}
+          </Typography>
+          <Typography  component={Link}
+            href="/register"
+            color="primary" sx={{ lineHeight: 2.5 }}>
+            {t("Register")}
           </Typography>
         </div>
       </Box>
@@ -128,57 +169,3 @@ const LoginPage = () => {
   );
 };
 export default LoginPage;
-//     <div >
-
-//       <MTextField
-//         fullWidth
-//         label="ชื่อผู้ใช้งาน"
-//         margin="normal"
-//         variant="outlined"
-//         required
-//       ></MTextField>
-//       <MTextField
-//         fullWidth
-//         label="รหัสผ่าน"
-//         type={isPasswordShown ? "text" : "password"}
-//         margin="normal"
-//         variant="outlined"
-//         required
-//         InputProps={{
-//           endAdornment: (
-//             <InputAdornment position="end">
-//               <IconButton
-//                 onClick={togglePasswordVisibility}
-//                 onMouseDown={handleMouseDown}
-//                 edge="end"
-//               >
-//                 {isPasswordShown ? <VisibilityOff /> : <Visibility />}
-//               </IconButton>
-//             </InputAdornment>
-//           ),
-//         }}
-//       />
-//       <div className="flex justify-between items-center gap-x-3 gap-y-1 flex-wrap">
-//         <FormControlLabel control={<Checkbox />} label="Remember me" />
-//         <Typography
-//           className="text-end"
-//           color="primary"
-//           component={Link}
-//           href="/forgot-password"
-//         >
-//           Forgot password?
-//         </Typography>
-//       </div>
-//       <Button fullWidth variant="contained" type="submit">
-//         Log In
-//       </Button>
-//       <div className="flex justify-center items-center flex-wrap gap-2">
-//         <Typography>New on our platform?</Typography>
-//         <Typography component={Link} href="/register" color="primary">
-//           Create an account
-//         </Typography>
-//       </div>
-//     </div>
-//   );
-// };
-// export default LoginPage;
