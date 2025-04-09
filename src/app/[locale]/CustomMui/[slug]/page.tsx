@@ -2,7 +2,7 @@
 import MTextFieldEx from "@/components/CustomMui/MTextFieldEx";
 import MTransferListEX from "@/components/CustomMui/MTransferListEx";
 import styles from "@/styles/CustomMui/page.module.scss"
-import Navbar from "@/components/NavBar";
+import Navbar from "@/components/NavBar_old";
 interface Slug {
     slug: string
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import Navbar from '@/components/NavBar'
+import Navbar from '@/components/NavBar_old'
 
 export default function Home() {
   const t = useTranslations('HomePage');

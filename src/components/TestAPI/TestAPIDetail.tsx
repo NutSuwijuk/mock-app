@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import React, { Fragment } from "react";
 import { useTransition } from "react";
 import styles from "@/styles/Test/TestDetail.module.scss";
-import Navbar from "../NavBar";
+import Navbar from "../NavBar_old";
 import Container from "@mui/material/Container";
 import { TestApiModel } from "@/model/TestAPI/testApiModelRes";
 import { TestApiDetailModel } from "@/model/TestAPI/testApiDetailModelRes";

@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React, { Fragment } from "react";
 import styles from "@/app/[locale]/page.module.scss";
-import Navbar from "@/components/NavBar";
+import Navbar from "@/components/NavBar_old";
 import { TestApiModel } from "@/model/TestAPI/testApiModelRes";
 import Link from "next/link";
 import CommentIcon from "@mui/icons-material/Comment";
