@@ -11,8 +11,10 @@ import {
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from 'react';
+import { useTheme } from '@mui/material/styles'; // Import useTheme
 
 export default function Navbar() {
+  const theme = useTheme(); // Get the theme
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -38,7 +40,7 @@ export default function Navbar() {
       sx={{
         zIndex: 1, 
         backgroundColor: '#1976d2',
-        height: '50px', // ลดความสูงของ Navbar
+        // height: '50px', // ลดความสูงของ Navbar
         marginLeft: '240px', // กำหนด margin ซ้าย 240px ให้ Navbar
         [theme.breakpoints.down('sm')]: {
           marginLeft: 0, // ปรับให้ไม่มี margin ซ้ายในหน้าจอเล็ก
